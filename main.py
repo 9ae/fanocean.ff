@@ -15,11 +15,19 @@
 # limitations under the License.
 #
 import webapp2
+import oauth_handlers
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
 
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'harryxginnyxdraco',
+}
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
+    ('/', MainHandler),
+    ('/connect/tumblr', oauth_handlers.TumblrCallback),
+    ('/login/tumblr', oauth_handlers.TumblrLogin),
+], debug=True, config=config)

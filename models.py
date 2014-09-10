@@ -3,6 +3,7 @@ from webapp2_extras import security
 
 class Author(ndb.Model):
 	tumblr_token = ndb.StringProperty()
+	tumblr_secret = ndb.StringProperty()
 	tumblr_username = ndb.StringProperty()
 
 class Story(ndb.Model):
