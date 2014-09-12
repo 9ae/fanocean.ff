@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 import webapp2
-import oauth_handlers
+import handlers_oauth
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -28,6 +28,6 @@ config['webapp2_extras.sessions'] = {
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/connect/tumblr', oauth_handlers.TumblrCallback),
-    ('/login/tumblr', oauth_handlers.TumblrLogin),
+    ('/connect/tumblr', handlers_oauth.TumblrCallback),
+    ('/login/tumblr', handlers_oauth.TumblrLogin),
 ], debug=True, config=config)

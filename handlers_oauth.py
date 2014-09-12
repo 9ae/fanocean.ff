@@ -1,35 +1,17 @@
-import webapp2
 import json
 import hashlib
 import pytumblr
 import urlparse
 import code
 import oauth2 as oauth
-from webapp2_extras import sessions
 
 from ignore_me import pokedex
+from handlers_custom import SessionHandler
 from models import Author
 
 request_token_url = 'http://www.tumblr.com/oauth/request_token'
 authorize_url = 'http://www.tumblr.com/oauth/authorize'
 access_token_url = 'http://www.tumblr.com/oauth/access_token'
-
-class SessionHandler(webapp2.RequestHandler):
-    def dispatch(self):
-        # Get a session store for this request.
-        self.session_store = sessions.get_store(request=self.request)
-
-        try:
-            # Dispatch the request.
-            webapp2.RequestHandler.dispatch(self)
-        finally:
-            # Save all sessions.
-            self.session_store.save_sessions(self.response)
-
-    @webapp2.cached_property
-    def session(self):
-        # Returns a session using the default cookie key.
-        return self.session_store.get_session()
 
 class TumblrLogin(SessionHandler):
 	def get(self):

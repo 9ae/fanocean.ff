@@ -1,5 +1,4 @@
 from google.appengine.ext import ndb
-from webapp2_extras import security
 
 class Author(ndb.Model):
 	tumblr_token = ndb.StringProperty()
